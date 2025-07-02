@@ -1,14 +1,12 @@
-# CLAUDE.md
+# Development Guide
 
-This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
+This file provides development guidance and project documentation for this repository.
 
 ## Development Commands
 
 ### Build and Test
 - `npm run build` - Compile TypeScript to JavaScript in dist/
 - `npm test` - Run all Jest tests
-- `npm run test:watch` - Run tests in watch mode
-- `npm run lint` - Run ESLint on TypeScript files
 - `npm run typecheck` - Type check without emitting files
 
 ### Running Individual Tests

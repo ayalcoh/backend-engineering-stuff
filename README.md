@@ -28,9 +28,6 @@ npm run build
 # Run tests
 npm test
 
-# Watch mode for development
-npm run test:watch
-
 # Type checking
 npm run typecheck
 ```
