@@ -8,9 +8,8 @@ dist/
 .vscode/
 .idea/
 
-# Personal files
-CLAUDE.md
-INTERVIEW_PREPARATION.md
+# Development notes
+dev-notes.md
 
 # Logs
 *.log

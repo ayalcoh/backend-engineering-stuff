@@ -1,41 +1,44 @@
-# Backend Engineering Test Solutions
+# Backend Engineering Solutions
 
-## Setup
+A collection of TypeScript utilities for common backend challenges including caching, stream processing, and weighted random selection.
+
+## Features
+
+### Thread-Safe Caching
+High-performance caching solution with promise deduplication to prevent race conditions in concurrent environments.
+
+### Stream Processing  
+Efficient processing of large UTF-8 data streams with buffer management and pagination support.
+
+### Weighted Random Selection
+Fair weighted random selection algorithm using cumulative distribution for consistent results.
+
+## Installation
+
 ```bash
 npm install
+```
+
+## Usage
+
+```bash
+# Build the project
+npm run build
+
+# Run tests
 npm test
+
+# Watch mode for development
+npm run test:watch
+
+# Type checking
+npm run typecheck
 ```
 
-## Solutions
+## Architecture
 
-### Question 1: Thread-Safe Caching
-**Problem**: Race condition in concurrent cache access causing duplicate database calls  
-**Solution**: Promise caching to ensure only one DB request per roomId at a time
+Built with TypeScript using strict mode for type safety. Comprehensive test coverage with Jest including concurrent scenario testing and statistical validation.
 
-### Question 2: Stream Processing  
-**Problem**: Process large achievement streams efficiently without memory overload  
-**Solution**: 
-- Part A: Callback-based stream processor with UTF-8 and semicolon delimiter handling
-- Part B: AsyncGenerator implementation for cleaner async iteration
+## License
 
-### Question 3: Weighted Random Selection
-**Problem**: Implement fair weighted "Spin the Wheel" selection using only Math.random()  
-**Solution**: Cumulative distribution function algorithm with O(n) selection time
-
-## Project Structure
-```
-src/
-├── question1.ts          # Caching solution
-├── question2.ts          # Stream processing solutions  
-├── question3.ts          # Weighted random selection
-└── tests/                # Comprehensive test suite
-    ├── question1.test.ts
-    ├── question2.test.ts
-    └── question3.test.ts
-```
-
-## Technical Features
-- TypeScript with strict configuration
-- Comprehensive error handling and input validation
-- 45 test cases covering edge cases and concurrent scenarios
-- Production-ready code quality
+MIT
