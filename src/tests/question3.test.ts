@@ -10,6 +10,8 @@ import {
   getAdvancedWheelSpinner,
 } from '../question3';
 
+type Wheel = Array<{ weight: number; reward: unknown }>;
+
 describe('Question 3: Weighted Random Selection', () => {
   describe('getWheelSpinner', () => {
     it('should create a spinner function', () => {
@@ -77,8 +79,8 @@ describe('Question 3: Weighted Random Selection', () => {
 
     it('should validate wheel parameter', () => {
       expect(() => getWheelSpinner([])).toThrow('Wheel must be a non-empty array');
-      expect(() => getWheelSpinner(null as any)).toThrow('Wheel must be a non-empty array');
-      expect(() => getWheelSpinner(undefined as any)).toThrow('Wheel must be a non-empty array');
+      expect(() => getWheelSpinner(null as unknown as Wheel)).toThrow('Wheel must be a non-empty array');
+      expect(() => getWheelSpinner(undefined as unknown as Wheel)).toThrow('Wheel must be a non-empty array');
     });
 
     it('should validate wedge structure', () => {
@@ -91,7 +93,7 @@ describe('Question 3: Weighted Random Selection', () => {
       ];
       
       invalidWheels.forEach((wheel) => {
-        expect(() => getWheelSpinner(wheel as any)).toThrow();
+        expect(() => getWheelSpinner(wheel as unknown as Wheel)).toThrow();
       });
     });
 

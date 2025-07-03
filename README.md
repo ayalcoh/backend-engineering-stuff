@@ -30,11 +30,16 @@ npm test
 
 # Type checking
 npm run typecheck
+
+# Code quality
+npm run lint              # Lint main source files
+npm run lint:all          # Lint all TypeScript files (including tests)
+npm run lint:fix          # Auto-fix linting issues
 ```
 
 ## Architecture
 
-Built with TypeScript using strict mode for type safety. Comprehensive test coverage with Jest including concurrent scenario testing and statistical validation.
+Built with TypeScript using strict mode for type safety. Comprehensive test coverage with Jest including concurrent scenario testing and statistical validation. Code quality enforced with ESLint and TypeScript strict checks.
 
 ## License
 

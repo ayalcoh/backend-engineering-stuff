@@ -144,7 +144,7 @@ describe('Question 2: Stream Processing', () => {
 
     it('should validate parameters', (done) => {
       readAchievementsPage(
-        null as any,
+        null as unknown as NodeJS.ReadableStream,
         () => {},
         () => {},
         (error: Error) => {
@@ -225,16 +225,18 @@ describe('Question 2: Stream Processing', () => {
       });
 
       await expect(async () => {
-        for await (const _page of readAchievementsPageGenerator(stream)) {
-          // Should not reach here
+        for await (const page of readAchievementsPageGenerator(stream)) {
+          // Should not reach here - consume the page to avoid unused variable warning
+          expect(page).toBeDefined();
         }
       }).rejects.toThrow('Stream error');
     });
 
     it('should validate input', async () => {
       await expect(async () => {
-        for await (const _page of readAchievementsPageGenerator(null as any)) {
-          // Should not reach here
+        for await (const page of readAchievementsPageGenerator(null as unknown as NodeJS.ReadableStream)) {
+          // Should not reach here - consume the page to avoid unused variable warning
+          expect(page).toBeDefined();
         }
       }).rejects.toThrow('Stream is required');
     });

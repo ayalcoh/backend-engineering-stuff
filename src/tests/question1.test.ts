@@ -8,7 +8,7 @@ import { fetchRoomConfig, clearCache, getCacheStats } from '../question1';
 const mockReadConfigFromDb = jest.fn();
 
 // Mock the readConfigFromDb function globally
-(global as any).readConfigFromDb = mockReadConfigFromDb;
+(global as unknown as { readConfigFromDb: typeof mockReadConfigFromDb }).readConfigFromDb = mockReadConfigFromDb;
 
 describe('Question 1: Thread-Safe Caching', () => {
   beforeEach(() => {
@@ -56,7 +56,7 @@ describe('Question 1: Thread-Safe Caching', () => {
       const results = await Promise.all(promises);
 
       // All should return the same config
-      results.forEach((result: any) => expect(result).toBe(mockConfig));
+      results.forEach((result: unknown) => expect(result).toBe(mockConfig));
       
       // DB should only be called once despite concurrent requests
       expect(mockReadConfigFromDb).toHaveBeenCalledTimes(1);

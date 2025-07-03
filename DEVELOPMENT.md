@@ -7,7 +7,13 @@ This file provides development guidance and project documentation for this repos
 ### Build and Test
 - `npm run build` - Compile TypeScript to JavaScript in dist/
 - `npm test` - Run all Jest tests
+- `npm run test:watch` - Run tests in watch mode
 - `npm run typecheck` - Type check without emitting files
+
+### Code Quality
+- `npm run lint` - Lint main source files (src/*.ts)
+- `npm run lint:all` - Lint all TypeScript files including tests
+- `npm run lint:fix` - Auto-fix linting issues where possible
 
 ### Running Individual Tests
 - `npm test -- question1.test.ts` - Run specific test file
@@ -54,3 +60,25 @@ This is a backend engineering test project with three independent algorithmic so
 - Strict mode enabled with comprehensive checks
 - Source maps and declarations generated
 - Excludes test files from compilation output
+
+### ESLint Configuration
+- TypeScript-aware linting with @typescript-eslint
+- Enforces type safety and code quality standards
+- Configured for both source and test files
+- Rules include: no unused variables, explicit any warnings, prefer const, no var declarations
+
+## Quality Assurance
+
+Before committing changes, ensure all quality checks pass:
+
+```bash
+npm run build && npm run typecheck && npm run lint && npm test
+```
+
+This runs:
+1. **Build** - Ensures TypeScript compiles without errors
+2. **Type Check** - Validates type safety without emitting files
+3. **Lint** - Checks code quality and style
+4. **Test** - Runs all 45+ tests to ensure functionality
+
+All checks must pass for a clean, production-ready codebase.
