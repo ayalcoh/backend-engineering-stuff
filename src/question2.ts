@@ -9,26 +9,8 @@ import { Readable } from 'stream';
 const PAGE_SIZE = 10;
 
 /**
- * Processes a UTF-8 stream of semicolon-delimited achievements using callbacks.
- * 
- * Reads achievement data from a stream, buffers partial chunks, and emits complete
- * pages of 10 achievements each. Handles chunked data correctly by maintaining
- * an internal buffer for incomplete achievement strings.
- * 
- * @param stream - NodeJS readable stream containing UTF-8 semicolon-delimited data
- * @param onPage - Callback invoked with each complete page of achievements
- * @param onDone - Callback invoked when stream processing is complete
- * @param onError - Callback invoked if an error occurs during processing
- * 
- * @example
- * ```typescript
- * readAchievementsPage(
- *   achievementStream,
- *   (page) => console.log(`Page: ${page}`),
- *   () => console.log('Done'),
- *   (err) => console.error(err)
- * );
- * ```
+ * Processes UTF-8 stream of semicolon-delimited achievements using callbacks.
+ * Buffers partial chunks and emits complete pages of 10 achievements each.
  */
 export function readAchievementsPage(
   stream: NodeJS.ReadableStream,
@@ -94,21 +76,8 @@ export function readAchievementsPage(
 }
 
 /**
- * Processes achievement stream using modern AsyncGenerator pattern.
- * 
- * Alternative implementation to the callback-based approach, using async generators
- * for cleaner iteration syntax. Yields pages of achievements as they become available.
- * 
- * @param stream - NodeJS readable stream containing UTF-8 semicolon-delimited data
- * @yields Arrays of achievement strings (up to 10 per page)
- * @throws Error if stream is invalid or processing fails
- * 
- * @example
- * ```typescript
- * for await (const page of readAchievementsPageGenerator(stream)) {
- *   console.log(`Received page with ${page.length} achievements`);
- * }
- * ```
+ * Processes achievement stream using AsyncGenerator pattern.
+ * Alternative implementation using async generators for cleaner iteration syntax.
  */
 export async function* readAchievementsPageGenerator(
   stream: NodeJS.ReadableStream
@@ -159,14 +128,6 @@ export async function* readAchievementsPageGenerator(
 
 /**
  * Creates a readable stream from an array of achievement strings for testing.
- * 
- * @param achievements - Array of achievement strings to stream
- * @returns Readable stream containing semicolon-delimited achievement data
- * 
- * @example
- * ```typescript
- * const stream = createAchievementsStream(['achievement1', 'achievement2']);
- * ```
  */
 export function createAchievementsStream(achievements: string[]): Readable {
   const data = achievements.join(';') + ';';
@@ -175,15 +136,6 @@ export function createAchievementsStream(achievements: string[]): Readable {
 
 /**
  * Promise-based wrapper around the callback-based achievement processor.
- * 
- * @param stream - NodeJS readable stream to process
- * @returns Promise resolving to array of achievement pages
- * 
- * @example
- * ```typescript
- * const pages = await processAchievementsWithCallback(stream);
- * console.log(`Got ${pages.length} pages`);
- * ```
  */
 export function processAchievementsWithCallback(
   stream: NodeJS.ReadableStream
@@ -202,15 +154,6 @@ export function processAchievementsWithCallback(
 
 /**
  * Promise-based wrapper around the AsyncGenerator achievement processor.
- * 
- * @param stream - NodeJS readable stream to process
- * @returns Promise resolving to array of achievement pages
- * 
- * @example
- * ```typescript
- * const pages = await processAchievementsWithGenerator(stream);
- * console.log(`Got ${pages.length} pages using generators`);
- * ```
  */
 export async function processAchievementsWithGenerator(
   stream: NodeJS.ReadableStream

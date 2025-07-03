@@ -23,6 +23,7 @@ This is a backend engineering test project with three independent algorithmic so
 - **Key Pattern**: Uses dual Maps - one for cached results, one for pending promises
 - **Testing**: Mock `readConfigFromDb` function, extensive concurrent scenario testing
 
+
 ### Question 2: Stream Processing (`src/question2.ts`)
 - **Problem**: Process large UTF-8 streams of semicolon-delimited data
 - **Solution**: Two implementations - callback-based and AsyncGenerator
