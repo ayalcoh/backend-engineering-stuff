@@ -51,13 +51,19 @@ export function getWheelSpinner(wheel: Wheel): () => Reward {
   return (): Reward => {
     const randomValue = Math.random() * totalWeight;
     
-    for (let i = 0; i < cumulativeWeights.length; i++) {
-      if (randomValue < cumulativeWeights[i]) {
-        return wheel[i].reward;
+    let left = 0;
+    let right = cumulativeWeights.length - 1;
+    
+    while (left < right) {
+      const mid = Math.floor((left + right) / 2);
+      if (randomValue < cumulativeWeights[mid]) {
+        right = mid;
+      } else {
+        left = mid + 1;
       }
     }
     
-    return wheel[wheel.length - 1].reward;
+    return wheel[left].reward;
   };
 }
 
